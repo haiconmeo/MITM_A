@@ -44,7 +44,7 @@ ll solveSubsetSum(ll a[], int n, ll S)
             // lower_bound() returns the first address
             // which has value greater than or equal to
             // S-X[i].
-            int p = lower_bound(Y, Y+size_Y, S-X[i]) - Y;
+            int p = lower_bound(Y, Y+size_Y, ;
  
             // If S-X[i] was not in array Y then decrease
             // p by 1
