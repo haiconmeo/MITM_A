@@ -6,6 +6,7 @@ using namespace std;
 typedef long long int ll; 
 ll *X = new ll[40000005];ll *Y = new ll[40000005]; 
 // khoi tao 2 mang x y , de luu cai tong con 
+ll S = 0;
 void calcsubarray(ll a[], ll x[], int n, int c) 
 { 
 // viec tim tong con dua tren  ki thuat Bitmask
@@ -21,7 +22,7 @@ void calcsubarray(ll a[], ll x[], int n, int c)
 } 
   
 
-ll solveSubsetSum(ll a[], int n, ll S) 
+bool solveSubsetSum(ll a[], int n, ll S) 
 { 
     
     calcsubarray(a, X, n/2, 0); 
@@ -34,9 +35,9 @@ ll solveSubsetSum(ll a[], int n, ll S)
     sort(Y, Y+size_Y); 
   
     
-    ll max = 0; 
-  
-   
+    bool max = 0; 
+  	if(S %2 ==1 || n %2 ==1) return 0;
+   S/=2;
     for (int i=0; i<size_X; i++) 
     { 
     	
@@ -49,8 +50,12 @@ ll solveSubsetSum(ll a[], int n, ll S)
             if (p == size_Y || Y[p] != (S-X[i])) 
                 p--; 
   
-            if ((Y[p]+X[i]) > max) 
-                max = Y[p]+X[i]; 
+            if ((Y[p]+X[i]) == S ) {
+				max=1;
+				break;
+			}
+                
+                
         } 
     } 
     return max; 
@@ -59,31 +64,23 @@ ll solveSubsetSum(ll a[], int n, ll S)
 // Driver code 
 int main() 
 { 
-	int n =40;
+	int n;
 	ll a[70];
-	ll S = 671111;
-	ofstream outfile;
-   outfile.open("text11.in");
-   outfile << n<<endl;
-    outfile << S<<endl;
-/*std::ifstream f("text.dat");
- 	int n;
- 	int S;
- 	f >>n;
- 	f>>S;*/
-  srand(time(NULL));
-
+	
+	int t;
+	cin >>t;
+  	for(int k=0;k<t;k++){
+  	cin >>n;
+  	S=0;
 	for (int i =0;i<n;i++){
-		a[i] = rand() %45000;
-			outfile<<a[i]<<endl;
+		cin >>a[i];
+		S+=a[i];
 	}
-    outfile.close();
-   
-     outfile.open("text11.out");
-     outfile << solveSubsetSum(a,n,S);
-    printf("Largest value smaller than or equal to given "
-           "sum is %lld\n", solveSubsetSum(a,n,S)); 
-       outfile.close();    
+	string x=solveSubsetSum(a,n,S)?"Yes":"No";
+	cout <<"Case"<<k+1<<":"<<x<<endl; 
+  }
+	
+       
            
     return 0; 
 } 

@@ -50,14 +50,17 @@ void subsets(vector<long long> &s){
 
 int main(){
 	int n;
-	ofstream outfile;
-   	outfile.open("text10.in");
-	//scanf("%d%lld%lld",&n,&a,&b);
+	ll a[70];
 	
-	n= 34;
-	a=250000;
-	b=50000000;
-	outfile << n<< " "<<a<<" "<<b<<endl;
+	int t;
+	cin >>t;
+ 	for(int k=0;k<t;k++){
+  	cin >>n;
+  	S=0;
+	for (int i =0;i<n;i++){
+		cin >>a[i];
+		S+=a[i];
+	}
 	vector<long long> s(n,0);
 	srand(time(NULL));
 	for(int i=0;i<n;i++){
