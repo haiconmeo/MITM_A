@@ -6,7 +6,7 @@ using namespace std;
 typedef long long int ll; 
 ll *X = new ll[40000005];ll *Y = new ll[40000005]; 
 // khoi tao 2 mang x y , de luu cai tong con 
-void calcsubarray(ll a[], ll x[], int n, int c) 
+void tinhsubset(ll a[], ll x[], int n, int c) 
 { 
 // viec tim tong con dua tren  ki thuat Bitmask
 // sau khi thuc hien cac mang se chua cac tong con tuong ung
@@ -21,11 +21,11 @@ void calcsubarray(ll a[], ll x[], int n, int c)
 } 
   
 
-ll solveSubsetSum(ll a[], int n, ll S) 
+ll thuchien(ll a[], int n, ll S) 
 { 
     
-    calcsubarray(a, X, n/2, 0); 
-    calcsubarray(a, Y, n-n/2, n/2); 
+    tinhsubset(a, X, n/2, 0); 
+    tinhsubset(a, Y, n-n/2, n/2); 
   
     int size_X = 1<<(n/2); 
     int size_Y = 1<<(n-n/2); 
@@ -80,7 +80,7 @@ int main()
     outfile.close();
    
      outfile.open("text11.out");
-     outfile << solveSubsetSum(a,n,S);
+     outfile << thuchien(a,n,S);
     printf("Largest value smaller than or equal to given "
            "sum is %lld\n", solveSubsetSum(a,n,S)); 
        outfile.close();    

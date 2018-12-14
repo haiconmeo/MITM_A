@@ -29,11 +29,7 @@ vector<long long> getSubsets(vector<long long> &s, int start, int siz){
 	}
 	return temp;
 }
-void printv(vector<long long> s){
-	for(int i=0;i<s.size();++i){
-		cout<<s[i]<<" ";
-	}
-}
+ 
 
 void subsets(vector<long long> &s){
 	int n=s.size();
