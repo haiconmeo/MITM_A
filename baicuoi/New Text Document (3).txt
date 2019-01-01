@@ -1,0 +1,13 @@
+def 4sum(A):  
+  sums = {}  
+  for a in A:  
+    for b in A:  
+      sums[a + b] = (a, b)  
+  
+  for c in A:  
+    for d in A:  
+      if -(c + d) in sums:  
+        print (sums[-(c + d)][0], sums[-(c + d)][1], c, d)  
+        return  
+  
+  print "No solution."   

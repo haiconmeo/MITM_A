@@ -60,13 +60,12 @@ int main()
         pre(0,0);
         sort(vis,vis+cnt);
         dfs(0,0);
-        //cout <<ans<<endl;
+        cout <<ans<<endl;
         if(ans){ 
-			cout <<"No"<<endl;
+			cout <<"Yes"<<endl;
 		}
 		else{
-			//cout <<"No"<<endl;
-			cout <<"Yes"<<endl;
+			cout <<"No"<<endl;
 		}
     }
     return 0;

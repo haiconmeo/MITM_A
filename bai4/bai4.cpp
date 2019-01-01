@@ -17,7 +17,6 @@ void tinhsubset(ll a[], ll x[], int n, int c)
             if (i & (1<<j)) 
                 s += a[j+c]; 
         x[i] = s; 
-      //  cout <<x[i]<<endl;
     } 
 } 
   
@@ -26,9 +25,8 @@ ll thuchien(ll a[], int n, ll S)
 { 
     
     tinhsubset(a, X, n/2, 0); 
-    //cout <<"cak"<<endl;
     tinhsubset(a, Y, n-n/2, n/2); 
-  	
+  
     int size_X = 1<<(n/2); 
     int size_Y = 1<<(n-n/2); 
   
@@ -36,33 +34,40 @@ ll thuchien(ll a[], int n, ll S)
     sort(Y, Y+size_Y); 
   
     
-    ll dem = 0; 
+    ll max = 0; 
   
    
     for (int i=0; i<size_X; i++) 
     { 
     	
-        if (X[i] <= S) 
-        { 
-            
-            for(int p =0;p<size_Y;p++){
-				if(X[i]+Y[p]<=S){
-					dem++;
-				}
-			}
-        } 
+        
+            int p;
+            int p1 = lower_bound(Y, Y+size_Y, S+X[i]) - Y; // tim can duoi cua s-x[i] trong y
+  			int p2 = lower_bound(Y, Y+size_Y, X[i]-S) - Y;
+           // neu s - x[i] ko thuoc y thi p --
+           
+            if (p1 == size_Y || Y[p1] != (S+X[i])) 
+                p1--; 
+            if (p2 == size_Y || Y[p2] != (X[i]-S)) 
+                p2--; 
+      		if (X[i] >Y[p]) p=p2;
+      		else p=p1;
+  
+            if (abs(Y[p]-X[i]) > max) 
+                max=abs(Y[p]-X[i]); 
+        
     } 
-    return dem; 
+    return max; 
 } 
   
 // Driver code 
 int main() 
 { 
-	int n =34;
+	int n =4;
 	ll a[70];
-	ll S = 200000;
+	ll S = 50;
 	ofstream outfile;
-   outfile.open("text10.in");
+   outfile.open("text1.in");
    outfile << n<<endl;
     outfile << S<<endl;
 /*std::ifstream f("text.dat");
@@ -73,12 +78,12 @@ int main()
   srand(time(NULL));
 
 	for (int i =0;i<n;i++){
-		a[i] = rand() %1000*99;
+		a[i] = rand() %45;
 			outfile<<a[i]<<endl;
 	}
     outfile.close();
    
-     outfile.open("text10.out");
+     outfile.open("text1.out");
      outfile << thuchien(a,n,S);
     printf("Largest value smaller than or equal to given "
            "sum is %lld\n", thuchien(a,n,S)); 
