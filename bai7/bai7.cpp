@@ -1,5 +1,7 @@
 #include <iostream>
 #include<algorithm>
+#include <fstream>
+#include <ctime>
 #include<vector>
 #define ll long long
 #define pb push_back
@@ -43,14 +45,31 @@ void gen(ll n,vector<ll> v[],ll A[])
 int main()
 {
     sieve();
-    ll t,n,A[20],B[20],N;
-        cin>>n>>k>>a>>b;
+    ll t,A[20],B[20],N;
+    ll n=34;
+    ll k=10;
+    ll a=500;
+    ll b=600;
+       // cin>>n>>k>>a>>b;
+    ofstream outfile;
+   	outfile.open("text10.in");
+   	outfile << n<<endl;
+   	outfile << k<<endl;
+   	outfile << a<<endl;
+   	outfile << b<<endl;
         vector<ll> v2[40];
         vector<pair<ll,ll> > v1;
-        for(ll i=0;i<n/2;i++)
-          cin>>A[i];
-        for(ll i=0;i<n-n/2;i++)
-          cin>>B[i];
+        for(ll i=0;i<n/2;i++){
+			A[i] = rand() %100*99;
+			outfile<<A[i]<<endl;
+		}
+        //  cin>>A[i];
+        for(ll i=0;i<n-n/2;i++){
+			B[i] = rand() %100*99;
+			outfile<<B[i]<<endl;
+		}
+          //cin>>B[i];
+          outfile.close();
         N=n/2;
         for(ll i=1;i<(1<<N);i++)
         {
@@ -103,6 +122,9 @@ int main()
                 ans+=(it2-it1);
             }
         }
+        outfile.open("text10.out");
+        outfile<<ans<<endl;
         cout<<ans<<endl;
+        outfile.close();
     return 0;
 }

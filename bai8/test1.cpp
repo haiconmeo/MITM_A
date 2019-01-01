@@ -13,6 +13,8 @@
 #include <bitset>
 #include <stack>
 #include <stdlib.h>
+#include <fstream>
+#include <ctime>
 #define lowbit(x) (x&-x)
 #define e exp(1.0)
 //ios::sync_with_stdio(false);
@@ -47,28 +49,42 @@ void dfs(int now,int s)
 }
 int main()
 {
-    int T;
-    cin>>T;
+    int T=2;
+	ofstream in;
+    in.open("text1.in");
+    ofstream outfile;
+    outfile.open("text1.out");
+	
+    in<<T<<endl;
+    srand(time(NULL));
+
     while(T--)
     {
-        cin>>n;
+        n = rand() %10;
+        in<<n<<endl;
         m1=n/2;m2=n-m1;
         sum=0;
-        for(int i=0;i<m1;i++)cin>>a[i],sum+=a[i];
-        for(int i=0;i<m2;i++)cin>>b[i],sum+=b[i];
+        for(int i=0;i<m1;i++)a[i]=rand() %45000,in<<a[i]<<endl,sum+=a[i];
+        for(int i=0;i<m2;i++)b[i]=rand() %45000,in<<b[i]<<endl,sum+=b[i];
         half=sum/2;cnt=0;ans=sum;
         pre(0,0);
         sort(vis,vis+cnt);
         dfs(0,0);
         //cout <<ans<<endl;
+        
+        
+    	
         if(ans){ 
-			cout <<"No"<<endl;
+			outfile<<"No"<<endl;
 		}
 		else{
 			//cout <<"No"<<endl;
-			cout <<"Yes"<<endl;
+			outfile <<"Yes"<<endl;
 		}
+		
     }
+    in.close();
+    outfile.close();
     return 0;
 }
 
