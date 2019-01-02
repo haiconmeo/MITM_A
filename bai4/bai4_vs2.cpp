@@ -66,19 +66,24 @@ int main()
 { 
 	int n;
 	ll a[70];
-	
-	int t;
-	cin >>t;
-  	for(int k=0;k<t;k++){
+	ofstream outfile;
+    outfile.open("text9.in"); 	
   	cin >>n;
+  	outfile<<n<<endl;
   	S=0;
 	for (int i =0;i<n;i++){
 		cin >>a[i];
+		outfile<<a[i]<<" ";
 		S+=a[i];
 	}
+	outfile.close();
+	ofstream in;
+    in.open("text9.out");
 	string x=solveSubsetSum(a,n,S)?"Yes":"No";
-	cout <<"Case"<<k+1<<":"<<x<<endl; 
-  }
+	cout <<x<<endl; 
+	in<<x<<endl;
+	in.close();
+  
 	
        
            
